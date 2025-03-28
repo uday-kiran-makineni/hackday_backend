@@ -5,7 +5,6 @@ import com.example.demo.repository.PrimaryUserRepository;
 import com.example.demo.service.PrimaryUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -31,19 +30,19 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody Map<String, String> loginData) {
-        String email = loginData.get("email");
+    public ResponseEntity<PrimaryUser> login(@RequestBody Map<String, String> loginData) {
+        String username = loginData.get("username");
         String password = loginData.get("password");
 
-        Optional<PrimaryUser> userOpt = userRepository.findByEmail(email);
+        Optional<PrimaryUser> userOpt = userRepository.findByUsername(username);
 
         if (userOpt.isPresent()) {
             PrimaryUser user = userOpt.get();
             if (Objects.equals(password, user.getPassword())) {
                 String userName = user.getUsername();
-                return ResponseEntity.ok(userName);
+                return ResponseEntity.ok(user);
             }
         }
-        return ResponseEntity.status(401).body("Invalid credentials");
+        return (ResponseEntity<PrimaryUser>) ResponseEntity.status(401);
     }
 }
