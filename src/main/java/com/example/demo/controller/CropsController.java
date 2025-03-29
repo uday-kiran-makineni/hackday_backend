@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "https://hackday-sepia.vercel.app")
 @RestController
-@CrossOrigin(origins = "http://farmvetconnect.vercel.app")
 @RequestMapping("/api/crops")
 public class CropsController {
 
