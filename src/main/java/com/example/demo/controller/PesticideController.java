@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "http://farmvetconnect.vercel.app")
 @RequestMapping("/api/pesticides")
 public class PesticideController {
 

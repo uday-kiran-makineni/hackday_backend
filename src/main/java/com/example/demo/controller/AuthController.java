@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "http://farmvetconnect.vercel.app")
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
